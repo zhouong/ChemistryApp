@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Initialize list of buttons through Recycle View
@@ -15,16 +16,17 @@ import androidx.appcompat.app.AppCompatActivity;
 public class TopicList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.topic_list);
-
-        //bring in api
-        String[] dataSet;
-        CustomAdapter customAdapter(dataSet);
+        setContentView(R.layout.loading);
 
         //creating view & populating recycler view
-        customAdapter.onCreateViewHolder(viewgroup, int);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
 
-        //set for button to function accordingly
+        String[] string;
+        CustomAdapter customAdapter = new CustomAdapter(string);
+
+        recyclerView.setAdapter(customAdapter);
+
+        //todo: allow recycle view item clickable
         Button button = findViewById(R.id.playersButton);
 
         //move to responding page
