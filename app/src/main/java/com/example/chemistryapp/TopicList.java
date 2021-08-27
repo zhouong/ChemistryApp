@@ -21,13 +21,14 @@ public class TopicList extends AppCompatActivity {
         //creating view & populating recycler view
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
 
+        //todo: call api here
         String[] string;
         CustomAdapter customAdapter = new CustomAdapter(string);
 
         recyclerView.setAdapter(customAdapter);
 
-        //todo: allow recycle view item clickable
-        Button button = findViewById(R.id.playersButton);
+        //todo: respond to the onclick
+        TextView button = findViewById(R.id.editText);
 
         //move to responding page
         button.setOnClickListener(new View.OnClickListener() {

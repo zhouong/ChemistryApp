@@ -1,8 +1,10 @@
 package com.example.chemistryapp;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.TextView;
 
 import androidx.annotation.LayoutRes;
@@ -29,6 +31,19 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         public TextView getTextView() {
             return textView;
         }
+
+        //todo: make this dynamic
+        //should save a string when clicked, but how do we send the string to the class?
+        public void bind(final ContentItem item, final AdapterView.OnItemClickListener listener) {
+            //move to responding page
+            textView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent myIntent = new Intent(TopicList.this, Chapter.class);
+                    startActivity(myIntent);
+                }
+            });
+        }
     }
 
     /**
@@ -45,7 +60,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         // Create a new view, which defines the UI of the list item
-        //todo: try to make layout dynamic
         View view = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.row_layout, viewGroup, false);
 
@@ -59,6 +73,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
         viewHolder.getTextView().setText(localDataSet[position]);
+        bind();
     }
 
     // Return the size of your dataset (invoked by the layout manager)
